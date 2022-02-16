@@ -80,7 +80,7 @@ services:
 
   stream-collector:
     container_name: stream-collector
-    image: snowplow-docker-registry.bintray.io/snowplow/scala-stream-collector-nsq:0.14.0
+    image: snowplow/scala-stream-collector-nsq:0.14.0
     command: [ "--config", "/snowplow/config/stream-collector.hocon" ]
     depends_on:
       - nsqd
@@ -93,7 +93,7 @@ services:
 
   stream-enrich:
     container_name: stream-enrich
-    image: snowplow-docker-registry.bintray.io/snowplow/stream-enrich-nsq:0.19.0
+    image: snowplow/stream-enrich-nsq:0.19.0
     command: [
       "--config", "/snowplow/config/stream-enrich.hocon",
       "--resolver", "file:/snowplow/config/resolver.json",
@@ -111,7 +111,7 @@ services:
 
   elasticsearch-loader-good:
     container_name: elasticsearch-loader-good
-    image: snowplow-docker-registry.bintray.io/snowplow/elasticsearch-loader:0.10.1
+    image: snowplow/elasticsearch-loader:0.10.1
     command: ["--config", "/snowplow/config/elasticsearch-loader-good.hocon"]
     depends_on:
       - stream-collector
@@ -123,7 +123,7 @@ services:
 
   elasticsearch-loader-bad:
     container_name: elasticsearch-loader-bad
-    image: snowplow-docker-registry.bintray.io/snowplow/elasticsearch-loader:0.10.1
+    image: snowplow/elasticsearch-loader:0.10.1
     command: ["--config", "/snowplow/config/elasticsearch-loader-bad.hocon"]
     depends_on:
       - stream-collector
