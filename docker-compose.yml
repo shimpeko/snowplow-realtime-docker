@@ -42,6 +42,15 @@ services:
     depends_on:
       - elasticsearch
 
+  iglu-server:
+    container_name: iglu-server
+    image: snowplow/iglu-server:latest
+    ports:
+      - "8081:8081"
+    volumes:
+      - ./config:/snowplow/config
+    command: --config /snowplow/config/iglu-server.hocon
+
   iglu:
     container_name: iglu
     image: nginx

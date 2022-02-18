@@ -22,6 +22,17 @@
             "uri": "http://iglu"
           }
         }
+      },
+      {
+        "name": "Local Iglu Server",
+        "priority": 2,
+        "vendorPrefixes": [ "com.dev" ],
+        "connection": {
+          "http": {
+            "uri": "http://iglu-server:8081",
+            "apikey": "48b267d7-cd2b-4f22-bae4-0f002008b5ad"
+          }
+        }
       }
     ]
   }
