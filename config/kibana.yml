@@ -1,0 +1,14 @@
+server.host: "0.0.0.0"
+server.shutdownTimeout: "5s"
+monitoring.ui.container.elasticsearch.enabled: true
+elasticsearch:
+  hosts: ["http://elasticsearch:9200"]
+
+# https://www.elastic.co/guide/en/kibana/current/reporting-settings-kb.html#reporting-advanced-settings
+xpack.reporting.roles.enabled: false
+# https://www.elastic.co/guide/en/kibana/master/alert-action-settings-kb.html#general-alert-action-settings
+# Setting just a random value
+xpack.encryptedSavedObjects.encryptionKey: b55f3d3b-73f8-4cd6-94ac-6b18cb1f5dd4
+# https://www.elastic.co/guide/en/kibana/current/using-kibana-with-security.html#security-configure-settings
+xpack.security.encryptionKey: b55f3d3b-73f8-4cd6-94ac-6b18cb1f5dd4
+xpack.reporting.encryptionKey: b55f3d3b-73f8-4cd6-94ac-6b18cb1f5dd4

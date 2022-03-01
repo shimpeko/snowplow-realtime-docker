@@ -1,0 +1,13 @@
+repoServer {
+  port = 8081
+}
+
+database {
+  type = "dummy"
+}
+
+debug = true
+
+# Super API Key is fixed for database.dummy
+# https://docs.snowplowanalytics.com/docs/pipeline-components-and-applications/iglu/iglu-repositories/iglu-server/setup/#dummy-mode
+#superApiKey = "48b267d7-cd2b-4f22-bae4-0f002008b5ad"
