@@ -10,9 +10,6 @@
     buffer: {
       recordLimit: 1
     }
-    buffer: {
-      recordLimit: 1
-    }
     # Required even in local environment
     region: us-east-1
   }

@@ -9,7 +9,7 @@ services:
       - ./config/elasticsearch.yml:/usr/share/elasticsearch/config/elasticsearch.yml
     ports:
       - "9200:9200"
-      - "9300:9300:
+      - "9300:9300"
     environment:
       - "ES_JAVA_OPTS=-Xms512m -Xmx512m"
     cap_add:
