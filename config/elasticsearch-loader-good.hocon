@@ -1,58 +1,39 @@
-source = nsq
-
-sink {
-  good = elasticsearch
-  bad = stderr
-}
-
-enabled = good
-
-aws {
-  accessKey = default
-  secretKey = default
-}
-
-nsq {
-  channelName = good-loader
-  host = nsqlookupd
-  port = 4150
-  lookupPort = 4161
-}
-
-kinesis {
-  initialPosition = TRIM_HORIZON
-  maxRecords = 200
-  region = us-east-1
-  appName = loader
-}
-
-streams {
-  inStreamName = enriched
-  outStreamName = bad
-
-  buffer {
-    byteLimit = 100
-    recordLimit = 1 # emit every record for testing purposes - NOT suitable for prod
-    timeLimit = 100
+{
+  purpose: ENRICHED_EVENTS
+  input: {
+    type: nsq
+    # Topic name
+    streamName: enriched
+    channelName: es-loader-good
+    nsqlookupdHost: nsqlookupd
+    nsqlookupdPort: 4161
+    # Requird for dev as default is 500
+    buffer: {
+      recordLimit: 1
+    }
+    # Required even in local environment
+    region: us-east-1
   }
-}
-
-elasticsearch {
-  client {
-    endpoint = elasticsearch
-    port = 9200
-    maxTimeout = 5
-    ssl = false
-  }
-
-  aws {
-    signing = false
-    region = us-east-1
-  }
-
-  cluster {
-    name = snowplow
-    index = "<good-{now/d}>"
-    clusterType = good
+  output: {
+    good: {
+      type: elasticsearch
+      client: {
+        endpoint: elasticsearch
+      }
+      cluster: {
+        index: good
+      }
+      aws: {
+          region: us-east-1
+      }
+    }
+    # Failed to load ES
+    bad {
+      type: stderr
+      streamName: load_failed
+      #nsqdHost: nsqd
+      #nsqdPort: 4150
+      region: us-east-1
+    }
   }
 }
